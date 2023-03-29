@@ -6,9 +6,14 @@ import {
   TbSortDescending,
   TbSortDescendingLetters,
 } from "react-icons/tb";
-import { sortTodo } from "../../features/todo/todoSlice";
-import { useAppDispatch } from "../../app/hooks";
+import {
+  selectDataDeleteTodo,
+  selectDataUpdateTodo,
+  sortTodo,
+} from "../../features/todo/todoSlice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { MdOutlineDone } from "react-icons/md";
+import { selectDataCreateTodo } from "./../../features/todo/todoSlice";
 interface ISortItem {
   title: string;
   icon: React.ReactNode;
@@ -45,10 +50,25 @@ const listSortItems: ISortItem[] = [
 export const TodoSortButton: React.FC = () => {
   const [valSort, setValSort] = useState<string>("Terbaru");
   const dropDownSortEl = document.querySelector("#dropDownSort");
+  const dataCreteTodo = useAppSelector(selectDataCreateTodo);
+  const dataUpdateTodo = useAppSelector(selectDataUpdateTodo);
+  const dataDeleteTodo = useAppSelector(selectDataDeleteTodo);
   const dispatch = useAppDispatch();
   const sortHandler = (type: string) => {
     dispatch(sortTodo({ type: type }));
   };
+
+  useEffect(() => {
+    if (
+      dataCreteTodo.status === "Success" ||
+      dataUpdateTodo.status === "Success" ||
+      dataDeleteTodo.status === "Success"
+    ) {
+      setTimeout(() => {
+        dispatch(sortTodo({ type: valSort }));
+      }, 50);
+    }
+  }, [dataCreteTodo, dataUpdateTodo, dataDeleteTodo]);
 
   return (
     <>

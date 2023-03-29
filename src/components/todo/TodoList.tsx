@@ -1,8 +1,9 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { selectDataTodo } from "../../features/todo/todoSlice";
 import { updateTodo } from "../../features/todo/updateTodo";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { TodoItem } from "./TodoItem";
+import { ITodoItem } from "../../interfaces/ITodoItem";
 
 export const TodoList: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -11,6 +12,7 @@ export const TodoList: React.FC = () => {
   const checkedHandler = (id: number, is_active: boolean) => {
     dispatch(updateTodo({ id: id, is_active: !is_active }));
   };
+
 
   return (
     <div className="flex flex-col mt-12 gap-4">
