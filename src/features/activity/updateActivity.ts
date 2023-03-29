@@ -11,7 +11,7 @@ export const updateActivity = createAsyncThunk(
       const response = await axios.patch(`activity-groups/${id}`, {
         title: title,
       });
-      const data: IActivity[] = response.data.data;
+      const data: IActivity[] = response.data;
       return data;
     } catch (err) {
       if (err instanceof AxiosError) {
