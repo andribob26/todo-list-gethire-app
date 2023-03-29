@@ -203,7 +203,7 @@ export const DetailPage: React.FC = () => {
           </button>
         </div>
         <div className="flex items-center gap-4 ml-auto lg:ml-0 mt-8 lg:mt-0">
-          {dataTodo.data.length > 0 && <TodoSortButton />}
+          <TodoSortButton />
           <Button
             dataCy="todo-add-button"
             bgColor="bg-primary"
