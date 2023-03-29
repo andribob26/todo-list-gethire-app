@@ -10,7 +10,7 @@ export const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index={true} element={<DasboardPage />} />
-          <Route path="detail-activity/:id" element={<DetailPage />} />
+          <Route path="detail/:id" element={<DetailPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

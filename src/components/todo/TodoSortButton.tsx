@@ -12,28 +12,34 @@ import { MdOutlineDone } from "react-icons/md";
 interface ISortItem {
   title: string;
   icon: React.ReactNode;
+  value: string;
 }
 
 const listSortItems: ISortItem[] = [
   {
     title: "Terbaru",
     icon: <TbSortDescending size={18} className="text-primary" />,
+    value: "sort-latest",
   },
   {
     title: "Terlama",
     icon: <TbSortAscending size={18} className="text-primary" />,
+    value: "sort-oldest",
   },
   {
     title: "A-Z",
     icon: <TbSortAscendingLetters size={18} className="text-primary" />,
+    value: "sort-az",
   },
   {
     title: "Z-A",
     icon: <TbSortDescendingLetters size={18} className="text-primary" />,
+    value: "sort-za",
   },
   {
     title: "Belum Selesai",
     icon: <TbArrowsSort size={18} className="text-primary" />,
+    value: "sort-unfinished",
   },
 ];
 export const TodoSortButton: React.FC = () => {
@@ -57,6 +63,7 @@ export const TodoSortButton: React.FC = () => {
         <TbArrowsSort size={24} />
       </button>
       <ul
+        data-cy="sort-parent"
         className="absolute z-[1000] border divide-y float-left m-0 hidden w-52 list-none overflow-hidden rounded border-solid bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700 [&[data-te-dropdown-show]]:block"
         aria-labelledby="dropDownSort"
         data-te-dropdown-menu-ref
@@ -65,6 +72,7 @@ export const TodoSortButton: React.FC = () => {
           return (
             <li key={i}>
               <button
+                data-cy={item.value}
                 onClick={() => {
                   setValSort(item.title);
                   sortHandler(item.title);

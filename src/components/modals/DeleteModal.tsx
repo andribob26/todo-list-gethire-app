@@ -10,6 +10,7 @@ interface IDeleteModalProps {
 export const DeleteModal: React.FC<IDeleteModalProps> = (props) => {
   return (
     <div
+      data-cy="modal-delete"
       data-te-modal-init
       className="fixed top-0 left-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
       id="deleteModal"
@@ -18,7 +19,6 @@ export const DeleteModal: React.FC<IDeleteModalProps> = (props) => {
       aria-hidden="true"
     >
       <div
-        data-cy="modal-delete"
         data-te-modal-dialog-ref
         className="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]"
       >
