@@ -29,12 +29,11 @@ export const DeleteModal: React.FC<IDeleteModalProps> = (props) => {
             className="relative flex-auto text-center  p-4"
             data-te-modal-body-ref
           >
-            <div className="flex justify-center items-center h-36">
-              <BsExclamationTriangle
-                data-cy="modal-delete-icon"
-                className="text-very-high"
-                size={54}
-              />
+            <div
+              data-cy="modal-delete-icon"
+              className="flex justify-center items-center h-36"
+            >
+              <BsExclamationTriangle className="text-very-high" size={54} />
             </div>
             <p data-cy="modal-delete-title" className="text-[18px]">
               Apakah anda yakin menghapus activity{" "}
