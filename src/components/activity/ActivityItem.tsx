@@ -24,11 +24,9 @@ export const ActivityItem: React.FC<IActivityItemProps> = (props) => {
   };
   return (
     <>
-      <div
-        data-cy="activity-item"
-        className="flex flex-col bg-white h-[150px] lg:h-[234px] shadow-lg rounded-[12px]"
-      >
+      <div className="flex flex-col bg-white h-[150px] lg:h-[234px] shadow-lg rounded-[12px]">
         <div
+          data-cy="activity-item"
           onClick={onClickHandler}
           className="cursor-pointer h-full px-6 pt-6"
         >
