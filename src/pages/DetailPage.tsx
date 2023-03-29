@@ -32,6 +32,9 @@ import { DeleteModal } from "../components/modals/DeleteModal";
 import { deleteTodo } from "../features/todo/deleteTodo";
 
 export const DetailPage: React.FC = () => {
+  const addModalEl = (window as any).te.Modal.getOrCreateInstance(
+    document.querySelector("#addModal")
+  );
   const refEditTitle = useRef<HTMLInputElement>(null);
   const refHEditTitle = useRef<HTMLHeadingElement>(null);
   const [isEditTitle, setIsEditTitle] = useState<boolean>(false);
@@ -100,9 +103,6 @@ export const DetailPage: React.FC = () => {
   };
 
   const showModalAdd = () => {
-    const addModalEl = (window as any).te.Modal.getOrCreateInstance(
-      document.querySelector("#addModal")
-    );
     addModalEl.show();
   };
 
