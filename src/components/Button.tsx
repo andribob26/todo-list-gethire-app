@@ -1,13 +1,12 @@
 import React from "react";
 interface IButtonProps {
   dataCy: string;
-  modalDismiss?: true | null;
   title: string;
   icon?: React.ReactNode;
   color?: string;
   bgColor: string;
   isLoading?: boolean;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent) => void;
   disabled?: boolean;
 }
 
@@ -20,7 +19,6 @@ export const Button: React.FC<IButtonProps> = (props) => {
       onClick={props.onClick}
       data-cy={props.dataCy}
       type="button"
-      data-te-modal-dismiss={props.modalDismiss}
       data-te-ripple-init
       data-te-ripple-color="light"
       className={`${props.bgColor} ${
@@ -53,4 +51,3 @@ Button.defaultProps = {
   disabled: false,
   color: "text-white",
 };
-

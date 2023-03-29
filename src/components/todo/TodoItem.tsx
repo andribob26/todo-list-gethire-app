@@ -14,6 +14,8 @@ interface ITodoItemProps {
 }
 
 export const TodoItem: React.FC<ITodoItemProps> = (props) => {
+  const modalDeleteEl = document.querySelector("#deleteModal");
+  const editModalEl = document.querySelector("#editModal");
   const dispatch = useAppDispatch();
 
   const showModal = () => {
@@ -25,10 +27,7 @@ export const TodoItem: React.FC<ITodoItemProps> = (props) => {
         type: typeTodo.update,
       })
     );
-    const addModalEl = (window as any).te.Modal.getOrCreateInstance(
-      document.querySelector("#editModal")
-    );
-    addModalEl.show();
+    editModalEl?.setAttribute("style", "display: block");
   };
   return (
     <div data-cy="todo-item" className="bg-white shadow-lg rounded-[12px] p-7">
@@ -71,11 +70,10 @@ export const TodoItem: React.FC<ITodoItemProps> = (props) => {
                 type: typeTodo.delete,
               })
             );
+            modalDeleteEl?.setAttribute("style", "display: block");
           }}
           className="z-50 text-black100"
           type="button"
-          data-te-toggle="modal"
-          data-te-target="#deleteModal"
         >
           <TbTrash size={22} />
         </button>

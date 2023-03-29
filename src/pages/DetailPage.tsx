@@ -32,9 +32,9 @@ import { DeleteModal } from "../components/modals/DeleteModal";
 import { deleteTodo } from "../features/todo/deleteTodo";
 
 export const DetailPage: React.FC = () => {
-  const addModalEl = (window as any).te.Modal.getOrCreateInstance(
-    document.querySelector("#addModal")
-  );
+  const modalDeleteEl = document.querySelector("#deleteModal");
+  const modalAddEl = document.querySelector("#addModal");
+  const modalEditEl = document.querySelector("#editModal");
   const refEditTitle = useRef<HTMLInputElement>(null);
   const refHEditTitle = useRef<HTMLHeadingElement>(null);
   const [isEditTitle, setIsEditTitle] = useState<boolean>(false);
@@ -103,7 +103,7 @@ export const DetailPage: React.FC = () => {
   };
 
   const showModalAdd = () => {
-    addModalEl.show();
+    modalAddEl?.setAttribute("style", "display: block");
   };
 
   const onChangeEditHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -138,10 +138,7 @@ export const DetailPage: React.FC = () => {
 
   useEffect(() => {
     if (dataCreateTodo.status === "Success") {
-      const modalAddEl = (window as any).te.Modal.getOrCreateInstance(
-        document.querySelector("#addModal")
-      );
-      modalAddEl.hide();
+      modalAddEl?.setAttribute("style", "display: none");
       dispatch(getAllTodo(location.state.id));
       dispatch(resetDataTodo({ type: typeTodo.create }));
     }
@@ -149,10 +146,7 @@ export const DetailPage: React.FC = () => {
 
   useEffect(() => {
     if (dataUpdateTodo.status === "Success") {
-      const modalEditEl = (window as any).te.Modal.getOrCreateInstance(
-        document.querySelector("#editModal")
-      );
-      modalEditEl.hide();
+      modalEditEl?.setAttribute("style", "display: none");
       dispatch(getAllTodo(location.state.id));
       dispatch(resetDataTodo({ type: typeTodo.update }));
     }
@@ -160,10 +154,7 @@ export const DetailPage: React.FC = () => {
 
   useEffect(() => {
     if (dataDeleteTodo.status === "Success") {
-      const modalDeleteEl = (window as any).te.Modal.getOrCreateInstance(
-        document.querySelector("#deleteModal")
-      );
-      modalDeleteEl.hide();
+      modalDeleteEl?.setAttribute("style", "display: none");
       dispatch(getAllTodo(location.state.id));
       dispatch(resetDataTodo({ type: typeTodo.delete }));
     }
