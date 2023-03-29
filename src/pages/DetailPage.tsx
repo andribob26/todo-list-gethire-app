@@ -30,11 +30,13 @@ import { EditModal } from "../components/modals/EditModal";
 import { updateTodo } from "../features/todo/updateTodo";
 import { DeleteModal } from "../components/modals/DeleteModal";
 import { deleteTodo } from "../features/todo/deleteTodo";
+import { AlertActivity } from "../components/modals/AlertActivity";
 
 export const DetailPage: React.FC = () => {
   const modalDeleteEl = document.querySelector("#deleteModal");
   const modalAddEl = document.querySelector("#addModal");
   const modalEditEl = document.querySelector("#editModal");
+  const alertActivityEl = document.querySelector("#alertActivity");
   const refEditTitle = useRef<HTMLInputElement>(null);
   const refHEditTitle = useRef<HTMLHeadingElement>(null);
   const [isEditTitle, setIsEditTitle] = useState<boolean>(false);
@@ -151,6 +153,11 @@ export const DetailPage: React.FC = () => {
       modalDeleteEl?.setAttribute("style", "display: none");
       dispatch(getAllTodo(location.state.id));
       dispatch(resetDataTodo({ type: typeTodo.delete }));
+      alertActivityEl?.setAttribute("style", "display: block");
+
+      setTimeout(() => {
+        alertActivityEl?.setAttribute("style", "display: none");
+      }, 2000);
     }
   }, [dataDeleteTodo]);
 
@@ -216,6 +223,7 @@ export const DetailPage: React.FC = () => {
           }
         }}
       />
+      <AlertActivity />
     </>
   );
 };
