@@ -74,7 +74,7 @@ export const DetailPage: React.FC = () => {
   };
 
   const updateActivityHandler = (id: number, title: string) => {
-    navigate(`/detail-activity/${id}`, {
+    navigate(`/detail/${id}`, {
       state: {
         id: id,
         title: title,
