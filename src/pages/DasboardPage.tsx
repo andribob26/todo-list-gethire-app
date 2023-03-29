@@ -23,6 +23,13 @@ export const DasboardPage: React.FC = () => {
   const dataActivity = useAppSelector(selectDataActivity);
   const dataDeleteActivity = useAppSelector(selectDataDeleteActivity);
   const dataCreateActivity = useAppSelector(selectDataCreateActivity);
+  const modalDeleteEl = (window as any).te.Modal.getOrCreateInstance(
+    document.querySelector("#deleteModal")
+  );
+  const alertActivityEl = (window as any).te.Modal.getOrCreateInstance(
+    document.querySelector("#alertActivity")
+  );
+  
   const createActivityHandler = () => {
     dispatch(createActivity());
   };
@@ -40,12 +47,6 @@ export const DasboardPage: React.FC = () => {
 
   useEffect(() => {
     if (dataDeleteActivity.status === "Success") {
-      const modalDeleteEl = (window as any).te.Modal.getOrCreateInstance(
-        document.querySelector("#deleteModal")
-      );
-      const alertActivityEl = (window as any).te.Modal.getOrCreateInstance(
-        document.querySelector("#alertActivity")
-      );
       modalDeleteEl.hide();
       dispatch(getAllActivity());
       dispatch(resetDataActivity({ type: typeActivity.delete }));

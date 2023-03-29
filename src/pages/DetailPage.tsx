@@ -122,7 +122,7 @@ export const DetailPage: React.FC = () => {
   }
 
   useEffect(() => {
-    if (!location.state) {
+    if (!location.state.title) {
       navigate("/", { replace: true });
     } else {
       setValueInputTitle(location.state.title);

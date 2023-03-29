@@ -12,6 +12,9 @@ interface IActivityItemProps {
 }
 
 export const ActivityItem: React.FC<IActivityItemProps> = (props) => {
+  const modalDeleteEl = (window as any).te.Modal.getOrCreateInstance(
+    document.querySelector("#deleteModal")
+  );
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const onClickHandler = () => {
@@ -47,12 +50,11 @@ export const ActivityItem: React.FC<IActivityItemProps> = (props) => {
           <button
             data-cy="activity-item-delete-button"
             onClick={() => {
+              modalDeleteEl.show();
               dispatch(saveIdToDelete({ id: props.id, title: props.title }));
             }}
             className="z-50"
             type="button"
-            data-te-toggle="modal"
-            data-te-target="#deleteModal"
           >
             <TbTrash size={22} />
           </button>
