@@ -15,7 +15,7 @@ export const ActivityItem: React.FC<IActivityItemProps> = (props) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const onClickHandler = () => {
-    navigate(`/detail-activity/${props.id}`, {
+    navigate(`/detail/${props.id}`, {
       state: {
         id: props.id,
         title: props.title,
