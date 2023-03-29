@@ -24,6 +24,7 @@ interface IInitialState {
   };
   dataUpdateActivity: {
     status: string;
+    title: string;
     isLoading: boolean;
   };
 }
@@ -45,6 +46,7 @@ const initialState: IInitialState = {
   },
   dataUpdateActivity: {
     status: "",
+    title: "",
     isLoading: false,
   },
 };
@@ -173,11 +175,14 @@ export const activitySlice = createSlice({
       };
     });
     builder.addCase(updateActivity.fulfilled, (state, { payload }) => {
-      state.dataUpdateActivity = {
-        ...state.dataUpdateActivity,
-        status: "Success",
-        isLoading: false,
-      };
+      if (payload) {
+        state.dataUpdateActivity = {
+          ...state.dataUpdateActivity,
+          status: "Success",
+          title: payload.title,
+          isLoading: false,
+        };
+      }
     });
     builder.addCase(updateActivity.rejected, (state, { payload }) => {
       state.dataUpdateActivity = {

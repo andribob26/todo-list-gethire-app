@@ -30,6 +30,7 @@ import { EditModal } from "../components/modals/EditModal";
 import { updateTodo } from "../features/todo/updateTodo";
 import { DeleteModal } from "../components/modals/DeleteModal";
 import { deleteTodo } from "../features/todo/deleteTodo";
+import { selectDataUpdateActivity } from "../features/activity/activitySlice";
 
 export const DetailPage: React.FC = () => {
   const modalDeleteEl = document.querySelector("#deleteModal");
@@ -40,6 +41,7 @@ export const DetailPage: React.FC = () => {
   const [isEditTitle, setIsEditTitle] = useState<boolean>(false);
   const [count, setCount] = useState(0);
   const [valueInputTitle, setValueInputTitle] = useState<string>("");
+  const [valTitle, setValTitle] = useState<string>("");
   const location: {
     state: IData;
   } = useLocation();
@@ -49,6 +51,7 @@ export const DetailPage: React.FC = () => {
   const dataTodo = useAppSelector(selectDataTodo);
   const dataUpdateTodo = useAppSelector(selectDataUpdateTodo);
   const dataDeleteTodo = useAppSelector(selectDataDeleteTodo);
+  const dataUpdateActivity = useAppSelector(selectDataUpdateActivity);
 
   const editTitleHandler = () => {
     setIsEditTitle(true);
@@ -119,7 +122,7 @@ export const DetailPage: React.FC = () => {
     if (!location.state.title) {
       navigate("/", { replace: true });
     } else {
-      setValueInputTitle(location.state.title);
+      setValTitle(location.state.title);
     }
   }, []);
 
@@ -154,6 +157,12 @@ export const DetailPage: React.FC = () => {
     }
   }, [dataDeleteTodo]);
 
+  useEffect(() => {
+    if (dataUpdateActivity.status === "Success") {
+      setValTitle(dataUpdateActivity.title);
+    }
+  }, [dataUpdateActivity]);
+
   return (
     <>
       <div className="flex flex-col lg:flex-row justify-between lg:items-center">
@@ -170,7 +179,7 @@ export const DetailPage: React.FC = () => {
               }}
               className="form-input text-[16px] lg:text-[36px] p-0 block min-h-[auto] w-full bg-transparent outline-none focus:outline-none focus:ring-0 focus:border-black "
               type="text"
-              defaultValue={valueInputTitle}
+              defaultValue={valTitle}
               onChange={onChangeEditHandler}
             />
           ) : (
@@ -180,7 +189,7 @@ export const DetailPage: React.FC = () => {
               onClick={editTitleHandler}
               className="cursor-pointer"
             >
-              {valueInputTitle}
+              {valTitle}
             </h1>
           )}
           <button data-cy="todo-title-edit-button" onClick={editTitleHandler}>
