@@ -7,8 +7,8 @@ export const getAllTodo = createAsyncThunk(
   "todo/getAllTodo",
   async (id: number, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`todo-items?activity_group_id=${id}`);
-      const data: ITodoItem[] = response.data.data;
+      const response = await axios.get(`activity-groups/${id}`);
+      const data: ITodoItem[] = response.data.todo_items;
       return data;
     } catch (err) {
       if (err instanceof AxiosError) {

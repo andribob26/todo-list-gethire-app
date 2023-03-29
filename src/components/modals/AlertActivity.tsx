@@ -2,8 +2,12 @@ import React from "react";
 import { BsExclamationCircle } from "react-icons/bs";
 
 export const AlertActivity: React.FC = () => {
+  const alertActivityEl = document.querySelector("#alertActivity");
   return (
     <div
+      onClick={() => {
+        alertActivityEl?.setAttribute("style", "display: none");
+      }}
       style={{ display: "none" }}
       className="fixed top-0 left-0 z-[1055] bg-black bg-opacity-30 h-full w-full overflow-y-auto overflow-x-hidden outline-none"
       id="alertActivity"
