@@ -74,7 +74,7 @@ export const TodoSortButton: React.FC = () => {
           return (
             <li key={i}>
               <button
-                data-cy={item.value}
+                data-cy="sort-selection"
                 onClick={() => {
                   setValSort(item.title);
                   sortHandler(item.title);
