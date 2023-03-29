@@ -176,7 +176,7 @@ export const AddModal: React.FC<IAddModalProps> = (props) => {
                       return (
                         <li key={i}>
                           <button
-                            data-cy={`modal-add-priority-${item.priority}`}
+                            data-cy="modal-add-priority-item"
                             onClick={() => {
                               setValPriority({
                                 color: item.color,
